@@ -13,33 +13,31 @@ import java.sql.Statement;
 
 @WebServlet(urlPatterns = "/school")
 public class SkolServlets extends HttpServlet {
+    //html code and styling for my närvaro page
+    String top = "<head><title>Närvaro</title></head>"
+            + "<body style = 'background-color: #cccec9;'>"
+            + "<h1 style = 'text-align: center;'>Närvaro</h1>"
+            + "<table style = 'margin-left: auto; margin-right: auto; border: 1px solid black; background-color: #57864b;'>"
+            + "<tr><th>id</th><th>Namn</th><th>Efternamn</th><th>YHP</th><th>Kurs</th><th>Beskrivning</th></tr>";
+
+    String bot = "</table>"
+            + "<div style = 'text-align: center;'>"
+            + "<a href=\"http://localhost:9090\"> Hem </a>"
+            + "<a href=\"http://localhost:9090/home\"> Studenter </a>"
+            + "<a href=\"http://localhost:9090/courses\"> Kurser </a>"
+            + "</div>"
+            + "</body>"
+            + "</html>";
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        //html code and styling for my närvaro page
-        String top = "<head><title>Närvaro</title></head>"
-                + "<body style = 'background-color: #cccec9;'>"
-                + "<h1 style = 'text-align: center;'>Närvaro</h1>"
-                + "<table style = 'margin-left: auto; margin-right: auto; border: 1px solid black; background-color: #57864b;'>"
-                + "<tr><th>id</th><th>Namn</th><th>Efternamn</th><th>YHP</th><th>Kurs</th><th>Beskrivning</th></tr>";
-
-        String bot = "</table>"
-                + "<div style = 'text-align: center;'>"
-                + "<a href=\"http://localhost:9090\"> Hem </a>"
-                + "<a href=\"http://localhost:9090/home\"> Studenter </a>"
-                + "<a href=\"http://localhost:9090/courses\"> Kurser </a>"
-                + "</div>"
-                + "</body>"
-                + "</html>";
-
-        try {
             PrintWriter out = resp.getWriter();
             out.println(top);
 
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                //PORT and DbName should be changed
 
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/gritacademy",
                         "sami", "");
@@ -63,9 +61,5 @@ public class SkolServlets extends HttpServlet {
             }
 
             out.println(bot);
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
