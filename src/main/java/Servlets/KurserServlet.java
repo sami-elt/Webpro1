@@ -17,6 +17,7 @@ public class KurserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        //html and styling to create the kurserpage with table
         String top = "<head><title>Kurser</title></head>"
                 + "<body style = 'background-color: #cccec9;'>"
                 +"<h1 style = 'text-align: center;'>Kurser</h1>"
@@ -47,6 +48,7 @@ public class KurserServlet extends HttpServlet {
                 //TABLENAME should be changed
                 ResultSet rs = stmt.executeQuery("select * from kurser;");
                 while (rs.next()) {
+                    //getting data from kurser and putting it into html table
                     out.println("<tr>");
                     out.println("<td>" + rs.getInt(1) + "</td>");
                     out.println("<td>" + rs.getString(2) + "</td>");

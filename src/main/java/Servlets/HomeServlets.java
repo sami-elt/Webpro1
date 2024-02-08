@@ -16,6 +16,7 @@ public class HomeServlets extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        // Html code with styling + table for the studentpage
         String top = "<head><title>Stundenter</title></head>"
                     + "<body style = 'background-color: #cccec9;'>"
                     +"<h1 style = 'text-align: center;'>Studenter</h1>"
@@ -44,6 +45,7 @@ public class HomeServlets extends HttpServlet {
             //TABLENAME should be changed
             ResultSet rs = stmt.executeQuery("select * from studenter;");
 
+            //putting data into the table
                 while (rs.next()) {
                     out.println("<tr>");
                     out.println("<td>" + rs.getInt(1) + "</td>");

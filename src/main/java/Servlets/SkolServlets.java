@@ -17,6 +17,7 @@ public class SkolServlets extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        //html code and styling for my närvaro page
         String top = "<head><title>Närvaro</title></head>"
                 + "<body style = 'background-color: #cccec9;'>"
                 + "<h1 style = 'text-align: center;'>Närvaro</h1>"
@@ -43,9 +44,10 @@ public class SkolServlets extends HttpServlet {
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/gritacademy",
                         "sami", "");
                 Statement stmt = con.createStatement();
-                //TABLENAME should be changed
+                //Query for getting the data i need to my table
                 ResultSet rs = stmt.executeQuery("select s.id, s.Fname, s.Lname, k.YHP, k.namn, k.beskrivning FROM studenter s  INNER JOIN närvaro n ON s.id = n.student_id INNER JOIN kurser k ON k.id = n.kurs_id;");
                 while (rs.next()) {
+                    //putting the data from närvaro into the table
                     out.println("<tr>");
                     out.println("<td>" + rs.getString(1) + "</td>");
                     out.println("<td>" + rs.getString(2) + "</td>");
